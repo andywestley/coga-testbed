@@ -7,7 +7,7 @@
             <span class="badge badge-fail mb-2"><i class="bi bi-x-circle me-1"></i>FAIL DEMONSTRATION</span>
             <h2 class="card-title fw-bold">Guideline 4: Help users avoid mistakes and know how to correct them</h2>
             <p class="text-muted">
-                <strong>Failure Indicators:</strong> Strict and unforgiving input validation, missing label indicators, abstract required markers (e.g., unexplained red asterisks), and unhelpful generic error codes.
+                <strong>Failure Indicators:</strong> Strict and unforgiving input validation, missing label indicators, abstract required markers (e.g., unexplained red asterisks), unhelpful generic error codes, and a complex overloaded form containing more than 7 fields with no grouping fieldsets.
             </p>
             <div class="alert alert-info">
                 <i class="bi bi-arrow-right-circle-fill me-2"></i>
@@ -25,15 +25,51 @@
         <h4 class="mb-4">Demo: Registration Profile</h4>
 
         <form id="fail-form" onsubmit="event.preventDefault(); document.getElementById('error-box').style.display = 'block'; window.scrollTo(0,0);">
+            
+            <p class="text-danger fw-bold">[Fail Indicator: 8 input fields stacked with no grouping fieldsets]</p>
+
             <div class="mb-3">
-                <!-- No label text, just abstract asterisk, rigid validation requiring exact syntax -->
+                <label class="fw-bold">First Name *</label>
+                <input type="text" class="form-control" name="first_name" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="fw-bold">Last Name *</label>
+                <input type="text" class="form-control" name="last_name" required>
+            </div>
+
+            <div class="mb-3">
                 <label class="fw-bold">Contact Number *</label>
                 <input type="text" class="form-control" name="phone" pattern="^[0-9]{10}$" required>
             </div>
 
             <div class="mb-3">
+                <label class="fw-bold">Street Address 1 *</label>
+                <input type="text" class="form-control" name="addr1" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="fw-bold">Street Address 2</label>
+                <input type="text" class="form-control" name="addr2">
+            </div>
+
+            <div class="mb-3">
+                <label class="fw-bold">City *</label>
+                <input type="text" class="form-control" name="city" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="fw-bold">Postal Code *</label>
+                <input type="text" class="form-control" name="zip" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="fw-bold">Country *</label>
+                <input type="text" class="form-control" name="country" required>
+            </div>
+
+            <div class="mb-3">
                 <label class="fw-bold">Subscription Options</label>
-                <!-- Abstract checkbox instruction lacking helper info (Choose one or multiple?) -->
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="c1">
                     <label class="form-check-label" for="c1">Newsletter</label>
