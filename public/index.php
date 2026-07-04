@@ -11,6 +11,12 @@
             <p class="col-md-11 text-muted">
                 You can use this codebase as a testbed for auditing tools, manual QA testing, and developer training. Use the sidebar or cards below to inspect the comparison views.
             </p>
+            <div class="alert alert-info mt-3 d-flex align-items-center" role="alert">
+                <i class="bi bi-info-circle-fill fs-4 me-3"></i>
+                <div>
+                    <strong>Unofficial Resource:</strong> Please note that this is not an official W3C website. I am publishing this as a helpful, independent resource for the web development community.
+                </div>
+            </div>
         </div>
     </div>
 
