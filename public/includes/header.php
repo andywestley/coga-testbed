@@ -15,7 +15,7 @@ $base_path = '/';
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Custom Style Sheet -->
-    <link href="<?php echo $base_path; ?>css/style.css" rel="stylesheet">
+    <link href="<?php echo $base_path; ?>css/style.css?v=<?php echo filemtime(__DIR__ . '/../css/style.css'); ?>" rel="stylesheet">
 </head>
 <body>
     <header>
