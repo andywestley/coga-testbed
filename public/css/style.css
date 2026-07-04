@@ -1,0 +1,166 @@
+/* Base Variables and Theme Setup */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --border-color: #dee2e6;
+    --primary-color: #0d6efd;
+    --primary-hover: #0b5ed7;
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Dark Mode Theme */
+[data-theme="dark"] {
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --border-color: #2d2d2d;
+    --primary-color: #375a7f;
+    --primary-hover: #2b4764;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+/* High Contrast Theme */
+[data-theme="high-contrast"] {
+    --bg-primary: #000000;
+    --bg-secondary: #000000;
+    --text-primary: #ffffff;
+    --text-secondary: #ffff00;
+    --border-color: #ffffff;
+    --primary-color: #ffff00;
+    --primary-hover: #ffffff;
+    --card-shadow: none;
+}
+
+/* Accessibility personalizations */
+body.font-dyslexic {
+    font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important;
+}
+
+body.text-spacing-large {
+    letter-spacing: 0.12em !important;
+    word-spacing: 0.16em !important;
+    line-height: 1.8 !important;
+}
+
+body.text-spacing-large p {
+    margin-bottom: 1.5em !important;
+}
+
+/* Core Layout styles */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+}
+
+/* Nav & Header styling */
+.navbar-custom {
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: var(--text-primary);
+}
+
+/* Custom Accessibility Panel styling */
+.accessibility-panel {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--card-shadow);
+}
+
+/* Sidebar Nav styling */
+.sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 2rem;
+    height: calc(100vh - 4rem);
+    overflow-y: auto;
+}
+
+.nav-pills .nav-link {
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.nav-pills .nav-link:hover {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+[data-theme="high-contrast"] .nav-pills .nav-link.active {
+    background-color: #ffff00;
+    color: #000;
+    font-weight: bold;
+    border: 2px solid #ffffff;
+}
+
+/* Fail vs Pass cards */
+.card-fail {
+    border-left: 5px solid #dc3545;
+}
+
+.card-pass {
+    border-left: 5px solid #198754;
+}
+
+.badge-fail {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.badge-pass {
+    background-color: #198754;
+    color: #fff;
+}
+
+/* G5 Fail pop-ups & animations mock */
+.g5-annoying-banner {
+    background: linear-gradient(90deg, red, yellow, red);
+    animation: flash 1s infinite alternate;
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 1rem;
+}
+
+@keyframes flash {
+    0% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .g5-annoying-banner {
+        animation: none;
+    }
+    * {
+        animation-delay: 0s !important;
+        animation-duration: 0s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0s !important;
+        scroll-behavior: auto !important;
+    }
+}
