@@ -1,58 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme Switcher Logic
-    const themeSelect = document.getElementById('theme-select');
-    if (themeSelect) {
-        // Load saved theme
-        const savedTheme = localStorage.getItem('coga-theme') || 'light';
-        themeSelect.value = savedTheme;
-        document.documentElement.setAttribute('data-theme', savedTheme);
-
-        themeSelect.addEventListener('change', (e) => {
-            const theme = e.target.value;
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('coga-theme', theme);
+  // Setup Code Copy Buttons
+  document.querySelectorAll('.code-copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      const codeEl = document.getElementById(targetId);
+      if (codeEl) {
+        navigator.clipboard.writeText(codeEl.innerText).then(() => {
+          const originalText = btn.innerHTML;
+          btn.innerHTML = '<i class="bi bi-check2"></i> Copied!';
+          btn.classList.replace('btn-outline-light', 'btn-success');
+          setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.classList.replace('btn-success', 'btn-outline-light');
+          }, 2000);
         });
-    }
+      }
+    });
+  });
 
-    // Text Spacing Logic
-    const textSpacingCheck = document.getElementById('text-spacing-check');
-    if (textSpacingCheck) {
-        // Load saved spacing state
-        const savedSpacing = localStorage.getItem('coga-spacing') === 'true';
-        textSpacingCheck.checked = savedSpacing;
-        if (savedSpacing) {
-            document.body.classList.add('text-spacing-large');
-        }
+  // Setup Index Filtering
+  const searchInput = document.getElementById('searchRules');
+  const pillarFilter = document.getElementById('filterPillar');
+  const tableRows = document.querySelectorAll('#matrixTable tbody tr');
 
-        textSpacingCheck.addEventListener('change', (e) => {
-            const enable = e.target.checked;
-            if (enable) {
-                document.body.classList.add('text-spacing-large');
-            } else {
-                document.body.classList.remove('text-spacing-large');
-            }
-            localStorage.setItem('coga-spacing', enable);
-        });
-    }
+  function filterTable() {
+    const query = (searchInput?.value || '').toLowerCase().trim();
+    const selectedPillar = pillarFilter?.value || 'all';
 
-    // Dyslexic Font Logic
-    const dyslexicFontCheck = document.getElementById('dyslexic-font-check');
-    if (dyslexicFontCheck) {
-        // Load saved state
-        const savedFont = localStorage.getItem('coga-dyslexic') === 'true';
-        dyslexicFontCheck.checked = savedFont;
-        if (savedFont) {
-            document.body.classList.add('font-dyslexic');
-        }
+    tableRows.forEach(row => {
+      const text = row.innerText.toLowerCase();
+      const pillar = row.getAttribute('data-pillar');
+      const matchesSearch = text.includes(query);
+      const matchesPillar = selectedPillar === 'all' || pillar === selectedPillar;
 
-        dyslexicFontCheck.addEventListener('change', (e) => {
-            const enable = e.target.checked;
-            if (enable) {
-                document.body.classList.add('font-dyslexic');
-            } else {
-                document.body.classList.remove('font-dyslexic');
-            }
-            localStorage.setItem('coga-dyslexic', enable);
-        });
-    }
+      row.style.display = (matchesSearch && matchesPillar) ? '' : 'none';
+    });
+  }
+
+  searchInput?.addEventListener('input', filterTable);
+  pillarFilter?.addEventListener('change', filterTable);
 });
