@@ -1,3 +1,6 @@
+> [!NOTE]
+> **This standalone repository is archived and now actively maintained as part of the unified [audit-testbeds](https://github.com/andywestley/audit-testbeds) monorepo.**
+
 # COGA Cognitive Accessibility Testbed
 
 A sandbox testbed designed to demonstrate the 8 Cognitive Accessibility (COGA) principles outlined by the W3C. This repository showcases side-by-side examples of **design failures** and **remediated solutions** to help audit tools, QA engineers, and developers understand cognitive accessibility.
